@@ -1,1 +1,17 @@
-.env
+# Python e MicroPython
+__pycache__/
+*.py[cod]
+*$py.class
+*.env
+.venv/
+env/
+
+# VS Code
+.vscode/
+
+# Arquivos locais do simulador Wokwi (opcional, gerados pela CLI localmente)
+wokwi-project.txt
+
+# Arquivos gerados pelo SO
+.DS_Store
+Thumbs.db

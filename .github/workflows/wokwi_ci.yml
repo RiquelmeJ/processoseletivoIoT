@@ -1,0 +1,23 @@
+name: Wokwi CI Test
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      - name: Simulacao Wokwi CI
+        uses: wokwi/wokwi-ci-action@v1
+        env:
+          WOKWI_CLI_TOKEN: ${{ secrets.WOKWI_API_KEY }}
+        with:
+          path: .
+          timeout: 10000
+          expect_text: "Sistema configurado!"

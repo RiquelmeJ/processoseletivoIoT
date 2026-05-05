@@ -1,7 +1,42 @@
 {
   "version": 1,
-  "author": "Uri Shaked",
+  "author": "Riquelme Jatay",
   "editor": "wokwi",
-  "parts": [ { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} } ],
-  "connections": [ [ "esp:TX", "$serialMonitor:RX", "", [] ], [ "esp:RX", "$serialMonitor:TX", "", [] ] ]
+  "parts": [
+    {
+      "type": "board-pi-pico-w",
+      "id": "pico",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    { "type": "wokwi-ds1307", "id": "rtc1", "top": 52.2, "left": 182.5, "attrs": {} },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": -72.8, "left": 107.82, "attrs": {} },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -84,
+      "left": 222.6,
+      "attrs": { "volume": "0.1" }
+    },
+    { "type": "wokwi-rgb-led", "id": "rgb1", "top": -63.2, "left": -104.5, "attrs": {} }
+  ],
+  "connections": [
+    [ "pico:GP0", "$serialMonitor:RX", "", [] ],
+    [ "pico:GP1", "$serialMonitor:TX", "", [] ],
+    [ "rtc1:SDA", "pico:GP20", "green", [ "h-105.6", "v57.3" ] ],
+    [ "pico:GP21", "rtc1:SCL", "green", [ "h23.06", "v-41.65" ] ],
+    [ "rtc1:GND", "pico:GND.5", "black", [ "h-105.6", "v115.2" ] ],
+    [ "rtc1:5V", "pico:3V3", "red", [ "h-96", "v-29.2" ] ],
+    [ "pir1:OUT", "pico:GP16", "green", [ "v0" ] ],
+    [ "pir1:VCC", "pico:3V3", "red", [ "v0" ] ],
+    [ "pir1:GND", "pico:GND.5", "black", [ "v0" ] ],
+    [ "pico:GND.8", "bz1:1", "black", [ "h0" ] ],
+    [ "pico:GP22", "bz1:2", "green", [ "h61.46", "v-80.05", "h124.8", "v0" ] ],
+    [ "pico:GP12", "rgb1:B", "green", [ "h0" ] ],
+    [ "rgb1:G", "pico:GP11", "green", [ "v0" ] ],
+    [ "pico:GP10", "rgb1:R", "green", [ "h0" ] ],
+    [ "rgb1:COM", "pico:3V3", "green", [ "v-0.4", "h172.9", "v48" ] ]
+  ],
+  "dependencies": {}
 }
