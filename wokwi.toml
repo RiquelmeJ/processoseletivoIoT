@@ -1,4 +1,4 @@
 [wokwi]
 version = 1
-firmware = 'src/main.py'
+firmware = 'path/to/micropython.uf2'
 elf = ''
